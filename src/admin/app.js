@@ -27,6 +27,11 @@ const config = {
     // 'zh-Hans',
     // 'zh',
   ],
+  translations: {
+    en: {
+      'app.components.LeftMenu.navbrand.title': 'B-Bot Datacenter'
+    }
+  },
 };
 
 const bootstrap = (app) => {
