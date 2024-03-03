@@ -23,7 +23,7 @@ module.exports = (config, { strapi }) => {
         method: 'get',
         url: `https://b-bot-ai.eu.auth0.com/userinfo`,
         headers: {
-          Authorization: `Bearer ${token}`,
+          authorization: `Bearer ${token}`,
         },
       });
       const userInfo = userInfoResponse.data;
