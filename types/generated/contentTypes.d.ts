@@ -1115,7 +1115,7 @@ export interface ApiModelModel extends Schema.CollectionType {
   info: {
     singularName: 'model';
     pluralName: 'models';
-    displayName: 'model';
+    displayName: 'Model';
     description: '';
   };
   options: {
@@ -1193,7 +1193,7 @@ export interface ApiQaQa extends Schema.CollectionType {
   info: {
     singularName: 'qa';
     pluralName: 'qas';
-    displayName: 'qa';
+    displayName: 'QA';
   };
   options: {
     draftAndPublish: true;
@@ -1228,7 +1228,7 @@ export interface ApiTemplateTemplate extends Schema.CollectionType {
   info: {
     singularName: 'template';
     pluralName: 'templates';
-    displayName: 'template';
+    displayName: 'Template';
   };
   options: {
     draftAndPublish: true;

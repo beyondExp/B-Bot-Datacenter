@@ -4,7 +4,7 @@
   "info": {
     "singularName": "template",
     "pluralName": "templates",
-    "displayName": "template"
+    "displayName": "Template"
   },
   "options": {
     "draftAndPublish": true
