@@ -15,10 +15,10 @@ module.exports = (config, { strapi }) => {
         return ctx.unauthorized('Authorization header is not present or invalid.');
       }
 
+      /*
       const token = authHeader.split(' ')[1];
       const decoded = jwt.decode(token);
 
-      // Get user info from Auth0
       const userInfoResponse = await axios({
         method: 'get',
         url: `https://b-bot-ai.eu.auth0.com/userinfo`,
@@ -27,13 +27,11 @@ module.exports = (config, { strapi }) => {
         },
       });
       const userInfo = userInfoResponse.data;
-
-      // Attempt to find the user in Strapi by their email or a unique identifier
+      console.log(userInfo)
       let user = await strapi.query('plugin::users-permissions.user').findOne({
         where: { email: userInfo.email },
       });
 
-      // If the user doesn't exist, create them
       if (!user) {
         user = await strapi.entityService.create('plugin::users-permissions.user', {
           data: {
@@ -46,10 +44,11 @@ module.exports = (config, { strapi }) => {
           },
         });
       }
+      console.log(user)
 
-      // Set the user in the context
       ctx.state.user = user;
-
+      */
+      console.log("hello")
       await next();
     } catch (error) {
       strapi.log.error('Authentication error:', error.message);
