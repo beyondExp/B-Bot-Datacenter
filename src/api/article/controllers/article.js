@@ -9,6 +9,10 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::article.article', ({ strapi }) => ({
   // Override the default find method
   async find(ctx) {
+    // Check if the user is authenticated
+    if (!ctx.state.user) {
+      return ctx.badRequest('You must be logged in to perform this action');
+    }
     // Ensure the query only returns articles owned by the current user
     ctx.query = {
       ...ctx.query,
@@ -26,6 +30,10 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
 
   // Override the default findOne method
   async findOne(ctx) {
+    // Check if the user is authenticated
+    if (!ctx.state.user) {
+      return ctx.badRequest('You must be logged in to perform this action');
+    }
     const { id } = ctx.params;
     const { query } = ctx;
 
