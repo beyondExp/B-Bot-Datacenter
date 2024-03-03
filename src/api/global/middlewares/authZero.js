@@ -21,7 +21,7 @@ module.exports = (config, { strapi }) => {
       // Get user info from Auth0
       const userInfoResponse = await axios({
         method: 'get',
-        url: `https://YOUR_AUTH0_DOMAIN.auth0.com/userinfo`,
+        url: `https://b-bot-ai.eu.auth0.com/userinfo`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
