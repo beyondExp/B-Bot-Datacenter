@@ -15,10 +15,11 @@ module.exports = (config, { strapi }) => {
         return ctx.unauthorized('Authorization header is not present or invalid.');
       }
 
-      /*
+
       const token = authHeader.split(' ')[1];
       const decoded = jwt.decode(token);
-
+      console.log(decoded)
+      /*
       const userInfoResponse = await axios({
         method: 'get',
         url: `https://b-bot-ai.eu.auth0.com/userinfo`,
