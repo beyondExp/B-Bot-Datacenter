@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "experts",
+  "info": {
+    "singularName": "expert",
+    "pluralName": "experts",
+    "displayName": "Expert",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "profile_picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true,
+      "unique": true,
+      "maxLength": 500,
+      "minLength": 50
+    },
+    "function_name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 10
+    },
+    "function_description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "maxLength": 255,
+      "minLength": 15
+    },
+    "system_message": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "model": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::model.model",
+      "inversedBy": "expert"
+    },
+    "templates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::template.template",
+      "inversedBy": "experts"
+    },
+    "abilities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ability.ability",
+      "inversedBy": "experts"
+    }
+  }
+}

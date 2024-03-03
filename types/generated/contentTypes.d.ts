@@ -783,6 +783,69 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAbilityAbility extends Schema.CollectionType {
+  collectionName: 'abilities';
+  info: {
+    singularName: 'ability';
+    pluralName: 'abilities';
+    displayName: 'Ability';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    text: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    experts: Attribute.Relation<
+      'api::ability.ability',
+      'manyToMany',
+      'api::expert.expert'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ability.ability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ability.ability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::ability.ability',
+      'oneToMany',
+      'api::ability.ability'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiAboutAbout extends Schema.SingleType {
   collectionName: 'abouts';
   info: {
@@ -908,7 +971,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'Category';
+    displayName: 'Article Category';
     description: 'Organize your content into categories';
   };
   options: {
@@ -937,6 +1000,113 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+  };
+}
+
+export interface ApiExpertExpert extends Schema.CollectionType {
+  collectionName: 'experts';
+  info: {
+    singularName: 'expert';
+    pluralName: 'experts';
+    displayName: 'Expert';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    profile_picture: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 500;
+      }>;
+    function_name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 50;
+      }>;
+    function_description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 15;
+        maxLength: 255;
+      }>;
+    system_message: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    model: Attribute.Relation<
+      'api::expert.expert',
+      'oneToOne',
+      'api::model.model'
+    >;
+    templates: Attribute.Relation<
+      'api::expert.expert',
+      'manyToMany',
+      'api::template.template'
+    >;
+    abilities: Attribute.Relation<
+      'api::expert.expert',
+      'manyToMany',
+      'api::ability.ability'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::expert.expert',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::expert.expert',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::expert.expert',
+      'oneToMany',
+      'api::expert.expert'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -973,6 +1143,185 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
   };
 }
 
+export interface ApiModelModel extends Schema.CollectionType {
+  collectionName: 'models';
+  info: {
+    singularName: 'model';
+    pluralName: 'models';
+    displayName: 'model';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    llm_name_string: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    publicly_trainable: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    model_qas: Attribute.Relation<
+      'api::model.model',
+      'manyToMany',
+      'api::qa.qa'
+    >;
+    expert: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'api::expert.expert'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::model.model',
+      'oneToMany',
+      'api::model.model'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiQaQa extends Schema.CollectionType {
+  collectionName: 'qas';
+  info: {
+    singularName: 'qa';
+    pluralName: 'qas';
+    displayName: 'qa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    set: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    models: Attribute.Relation<'api::qa.qa', 'manyToMany', 'api::model.model'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::qa.qa', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::qa.qa', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<'api::qa.qa', 'oneToMany', 'api::qa.qa'>;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTemplateTemplate extends Schema.CollectionType {
+  collectionName: 'templates';
+  info: {
+    singularName: 'template';
+    pluralName: 'templates';
+    displayName: 'template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    template_name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+        maxLength: 100;
+      }>;
+    template_text: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    experts: Attribute.Relation<
+      'api::template.template',
+      'manyToMany',
+      'api::expert.expert'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::template.template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::template.template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::template.template',
+      'oneToMany',
+      'api::template.template'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -991,11 +1340,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::ability.ability': ApiAbilityAbility;
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::expert.expert': ApiExpertExpert;
       'api::global.global': ApiGlobalGlobal;
+      'api::model.model': ApiModelModel;
+      'api::qa.qa': ApiQaQa;
+      'api::template.template': ApiTemplateTemplate;
     }
   }
 }
