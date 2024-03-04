@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ability",
     "pluralName": "abilities",
-    "displayName": "Ability"
+    "displayName": "Ability",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -38,6 +39,12 @@
       "relation": "manyToMany",
       "target": "api::expert.expert",
       "mappedBy": "abilities"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "abilities"
     }
   }
 }

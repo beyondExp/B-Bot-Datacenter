@@ -4,7 +4,7 @@
   "info": {
     "singularName": "qa",
     "pluralName": "qas",
-    "displayName": "qa"
+    "displayName": "QA"
   },
   "options": {
     "draftAndPublish": true

@@ -766,6 +766,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    abilities: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::ability.ability'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -789,6 +794,7 @@ export interface ApiAbilityAbility extends Schema.CollectionType {
     singularName: 'ability';
     pluralName: 'abilities';
     displayName: 'Ability';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -821,6 +827,11 @@ export interface ApiAbilityAbility extends Schema.CollectionType {
       'api::ability.ability',
       'manyToMany',
       'api::expert.expert'
+    >;
+    owner: Attribute.Relation<
+      'api::ability.ability',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1115,7 +1126,7 @@ export interface ApiModelModel extends Schema.CollectionType {
   info: {
     singularName: 'model';
     pluralName: 'models';
-    displayName: 'model';
+    displayName: 'Model';
     description: '';
   };
   options: {
@@ -1193,7 +1204,7 @@ export interface ApiQaQa extends Schema.CollectionType {
   info: {
     singularName: 'qa';
     pluralName: 'qas';
-    displayName: 'qa';
+    displayName: 'QA';
   };
   options: {
     draftAndPublish: true;
@@ -1228,7 +1239,7 @@ export interface ApiTemplateTemplate extends Schema.CollectionType {
   info: {
     singularName: 'template';
     pluralName: 'templates';
-    displayName: 'template';
+    displayName: 'Template';
   };
   options: {
     draftAndPublish: true;

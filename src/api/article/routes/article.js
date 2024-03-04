@@ -10,7 +10,7 @@ module.exports = {
       path: '/articles',
       handler: 'article.find',
       config: {
-        middlewares: ['global::authZero'],
+        //middlewares: ['global::authZero'],
       },
     },
     {
@@ -18,7 +18,7 @@ module.exports = {
       path: '/articles/:id',
       handler: 'article.findOne',
       config: {
-        middlewares: ['global::authZero'],
+        //middlewares: ['global::authZero'],
       },
     },
     // Repeat for other routes as necessary
