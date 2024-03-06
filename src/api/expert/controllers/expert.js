@@ -40,6 +40,42 @@ module.exports = createCoreController('api::expert.expert', {
 
     }
     return super.find(ctx);
+  },
+  async findOne(ctx){
+    if(typeof ctx.state.user !== "undefined") {
+
+      const user = ctx.state.user;
+
+      ctx.query.filters = {
+        ...(ctx.query.filters || {}),
+        owner: user.id
+      };
+    }
+    return super.findOne(ctx);
+  },
+  async update(ctx){
+    if(typeof ctx.state.user !== "undefined") {
+
+      const user = ctx.state.user;
+
+      ctx.query.filters = {
+        ...(ctx.query.filters || {}),
+        owner: user.id
+      };
+    }
+    return super.update(ctx);
+  },
+  async delete(ctx){
+    if(typeof ctx.state.user !== "undefined") {
+
+      const user = ctx.state.user;
+
+      ctx.query.filters = {
+        ...(ctx.query.filters || {}),
+        owner: user.id
+      };
+    }
+    return super.delete(ctx);
   }
 
 });
