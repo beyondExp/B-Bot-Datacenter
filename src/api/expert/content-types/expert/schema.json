@@ -78,11 +78,10 @@
       },
       "type": "text"
     },
-    "model": {
+    "models": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::model.model",
-      "inversedBy": "expert"
+      "relation": "oneToMany",
+      "target": "api::model.model"
     },
     "templates": {
       "type": "relation",

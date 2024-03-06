@@ -51,12 +51,6 @@
       "target": "api::qa.qa",
       "inversedBy": "models"
     },
-    "expert": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::expert.expert",
-      "mappedBy": "model"
-    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",

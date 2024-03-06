@@ -1126,9 +1126,9 @@ export interface ApiExpertExpert extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    model: Attribute.Relation<
+    models: Attribute.Relation<
       'api::expert.expert',
-      'oneToOne',
+      'oneToMany',
       'api::model.model'
     >;
     templates: Attribute.Relation<
@@ -1280,11 +1280,6 @@ export interface ApiModelModel extends Schema.CollectionType {
       'api::model.model',
       'manyToMany',
       'api::qa.qa'
-    >;
-    expert: Attribute.Relation<
-      'api::model.model',
-      'oneToOne',
-      'api::expert.expert'
     >;
     owner: Attribute.Relation<
       'api::model.model',
