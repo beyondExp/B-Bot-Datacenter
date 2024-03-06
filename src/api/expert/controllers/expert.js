@@ -43,37 +43,64 @@ module.exports = createCoreController('api::expert.expert', {
   },
   async findOne(ctx){
     if(typeof ctx.state.user !== "undefined") {
-
       const user = ctx.state.user;
+      const { id } = ctx.params;
+      const expert = await strapi.entityService.findOne('api::expert.expert', id, {
+        populate: { owner: { fields: ['id'], } },
+      })
 
-      ctx.query.filters = {
-        ...(ctx.query.filters || {}),
-        owner: user.id
-      };
+      if (expert?.owner?.id === user.id) {
+        return expert;
+      } else {
+        return {
+          data: null,
+          error: {
+            message: 'Not authorized'
+          }
+        }
+      }
     }
-    return super.findOne(ctx);
+    return super.findOne(ctx)
   },
   async update(ctx){
     if(typeof ctx.state.user !== "undefined") {
-
       const user = ctx.state.user;
+      const { id } = ctx.params;
+      const expert = await strapi.entityService.findOne('api::expert.expert', id, {
+        populate: { owner: { fields: ['id'], } },
+      })
 
-      ctx.query.filters = {
-        ...(ctx.query.filters || {}),
-        owner: user.id
-      };
+      if (expert?.owner?.id === user.id) {
+        return super.update(ctx);
+      } else {
+        return {
+          data: null,
+          error: {
+            message: 'Not authorized'
+          }
+        }
+      }
     }
     return super.update(ctx);
   },
   async delete(ctx){
     if(typeof ctx.state.user !== "undefined") {
-
       const user = ctx.state.user;
+      const { id } = ctx.params;
+      const expert = await strapi.entityService.findOne('api::expert.expert', id, {
+        populate: { owner: { fields: ['id'], } },
+      })
 
-      ctx.query.filters = {
-        ...(ctx.query.filters || {}),
-        owner: user.id
-      };
+      if (expert?.owner?.id === user.id) {
+        return super.delete(ctx);
+      } else {
+        return {
+          data: null,
+          error: {
+            message: 'Not authorized'
+          }
+        }
+      }
     }
     return super.delete(ctx);
   }
