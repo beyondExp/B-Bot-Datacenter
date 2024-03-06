@@ -1128,7 +1128,7 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       }>;
     models: Attribute.Relation<
       'api::expert.expert',
-      'oneToMany',
+      'manyToMany',
       'api::model.model'
     >;
     templates: Attribute.Relation<
@@ -1285,6 +1285,11 @@ export interface ApiModelModel extends Schema.CollectionType {
       'api::model.model',
       'manyToOne',
       'plugin::users-permissions.user'
+    >;
+    experts: Attribute.Relation<
+      'api::model.model',
+      'manyToMany',
+      'api::expert.expert'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
