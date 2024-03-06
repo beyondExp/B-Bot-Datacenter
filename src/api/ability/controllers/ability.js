@@ -10,7 +10,7 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::ability.ability', {
 
   async create(ctx) {
-    if(user){
+    if(ctx.state.user){
       const user = ctx.state.user;
       const role = ctx.state.user.role
       if(role.name !== "Administrator"){
@@ -29,7 +29,7 @@ module.exports = createCoreController('api::ability.ability', {
     }
   },
   async find(ctx){
-    if(typeof user !== "undefined") {
+    if(typeof ctx.state.user !== "undefined") {
 
       const user = ctx.state.user;
 
