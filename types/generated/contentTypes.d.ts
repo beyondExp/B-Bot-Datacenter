@@ -1151,6 +1151,63 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       'manyToOne',
       'api::author.author'
     >;
+    profession: Attribute.Enumeration<
+      [
+        'Accountant',
+        'Architect',
+        'Artist',
+        'Business Development Manager',
+        'Carpenter',
+        'Chef',
+        'Content Writer',
+        'Customer Service Agent',
+        'Customer Success Manager',
+        'Data Scientist',
+        'Electrician',
+        'Event Coordinator',
+        'Event Planner',
+        'Fashion Designer',
+        'Financial Advisor',
+        'Financial Analyst',
+        'Financial Controller',
+        'Fitness Instructor',
+        'Graphic Designer',
+        'HR Manager',
+        'HR Specialist',
+        'Investment Banker',
+        'IT Consultant',
+        'Interior Designer',
+        'Lawyer',
+        'Marketing Manager',
+        'Mechanic',
+        'Nurse',
+        'Operations Manager',
+        'Photographer',
+        'Plumber',
+        'Product Designer',
+        'Product Manager',
+        'Project Manager',
+        'Real Estate Agent',
+        'Research Analyst',
+        'Sales Manager',
+        'Sales Representative',
+        'Security Guard',
+        'Social Media Manager',
+        'Software Engineer',
+        'Supply Chain Manager',
+        'Teacher',
+        'Translator',
+        'Travel Agent',
+        'Web Developer',
+        'Quality Assurance Manager'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
