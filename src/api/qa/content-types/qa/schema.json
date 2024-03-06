@@ -4,7 +4,8 @@
   "info": {
     "singularName": "qa",
     "pluralName": "qas",
-    "displayName": "QA"
+    "displayName": "QA",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,12 @@
       "relation": "manyToMany",
       "target": "api::model.model",
       "mappedBy": "model_qas"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "qas"
     }
   }
 }

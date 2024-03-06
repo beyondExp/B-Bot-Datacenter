@@ -71,6 +71,42 @@
       "relation": "oneToMany",
       "target": "api::ability.ability",
       "mappedBy": "owner"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "owner"
+    },
+    "authors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::author.author",
+      "mappedBy": "owner"
+    },
+    "experts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expert.expert",
+      "mappedBy": "owner"
+    },
+    "models": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::model.model",
+      "mappedBy": "owner"
+    },
+    "qas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::qa.qa",
+      "mappedBy": "owner"
+    },
+    "templates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::template.template",
+      "mappedBy": "owner"
     }
   }
 }

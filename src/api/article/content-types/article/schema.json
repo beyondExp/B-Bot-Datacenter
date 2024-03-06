@@ -53,6 +53,12 @@
         "shared.rich-text",
         "shared.slider"
       ]
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
     }
   }
 }

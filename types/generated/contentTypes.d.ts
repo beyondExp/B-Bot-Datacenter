@@ -771,6 +771,36 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::ability.ability'
     >;
+    articles: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::article.article'
+    >;
+    authors: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::author.author'
+    >;
+    experts: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::expert.expert'
+    >;
+    models: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::model.model'
+    >;
+    qas: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::qa.qa'
+    >;
+    templates: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::template.template'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -922,6 +952,11 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     blocks: Attribute.DynamicZone<
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
     >;
+    owner: Attribute.Relation<
+      'api::article.article',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -959,6 +994,11 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'api::author.author',
       'oneToMany',
       'api::article.article'
+    >;
+    owner: Attribute.Relation<
+      'api::author.author',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1097,6 +1137,11 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       'manyToMany',
       'api::ability.ability'
     >;
+    owner: Attribute.Relation<
+      'api::expert.expert',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1175,6 +1220,11 @@ export interface ApiModelModel extends Schema.CollectionType {
       'oneToOne',
       'api::expert.expert'
     >;
+    owner: Attribute.Relation<
+      'api::model.model',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1205,6 +1255,7 @@ export interface ApiQaQa extends Schema.CollectionType {
     singularName: 'qa';
     pluralName: 'qas';
     displayName: 'QA';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1222,6 +1273,11 @@ export interface ApiQaQa extends Schema.CollectionType {
         };
       }>;
     models: Attribute.Relation<'api::qa.qa', 'manyToMany', 'api::model.model'>;
+    owner: Attribute.Relation<
+      'api::qa.qa',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1240,6 +1296,7 @@ export interface ApiTemplateTemplate extends Schema.CollectionType {
     singularName: 'template';
     pluralName: 'templates';
     displayName: 'Template';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1275,6 +1332,11 @@ export interface ApiTemplateTemplate extends Schema.CollectionType {
       'api::template.template',
       'manyToMany',
       'api::expert.expert'
+    >;
+    owner: Attribute.Relation<
+      'api::template.template',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

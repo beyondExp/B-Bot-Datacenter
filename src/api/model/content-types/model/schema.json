@@ -56,6 +56,12 @@
       "relation": "oneToOne",
       "target": "api::expert.expert",
       "mappedBy": "model"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "models"
     }
   }
 }

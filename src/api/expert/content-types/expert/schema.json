@@ -95,6 +95,12 @@
       "relation": "manyToMany",
       "target": "api::ability.ability",
       "inversedBy": "experts"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "experts"
     }
   }
 }

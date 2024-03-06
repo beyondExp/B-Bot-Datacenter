@@ -4,7 +4,8 @@
   "info": {
     "singularName": "template",
     "pluralName": "templates",
-    "displayName": "Template"
+    "displayName": "Template",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -41,6 +42,12 @@
       "relation": "manyToMany",
       "target": "api::expert.expert",
       "mappedBy": "templates"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "templates"
     }
   }
 }
