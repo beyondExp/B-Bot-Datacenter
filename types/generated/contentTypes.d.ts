@@ -737,7 +737,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -776,9 +775,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::article.article'
     >;
-    authors: Attribute.Relation<
+    author: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToMany',
+      'oneToOne',
       'api::author.author'
     >;
     experts: Attribute.Relation<
@@ -995,9 +994,14 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'oneToMany',
       'api::article.article'
     >;
+    experts: Attribute.Relation<
+      'api::author.author',
+      'oneToMany',
+      'api::expert.expert'
+    >;
     owner: Attribute.Relation<
       'api::author.author',
-      'manyToOne',
+      'oneToOne',
       'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
@@ -1141,6 +1145,11 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       'api::expert.expert',
       'manyToOne',
       'plugin::users-permissions.user'
+    >;
+    author: Attribute.Relation<
+      'api::expert.expert',
+      'manyToOne',
+      'api::author.author'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

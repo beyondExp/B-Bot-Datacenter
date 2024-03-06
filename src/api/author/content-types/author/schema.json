@@ -34,11 +34,17 @@
       "target": "api::article.article",
       "mappedBy": "author"
     },
+    "experts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expert.expert",
+      "mappedBy": "author"
+    },
     "owner": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "authors"
+      "mappedBy": "author"
     }
   }
 }

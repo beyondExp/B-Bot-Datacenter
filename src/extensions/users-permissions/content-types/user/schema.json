@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -78,11 +77,11 @@
       "target": "api::article.article",
       "mappedBy": "owner"
     },
-    "authors": {
+    "author": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::author.author",
-      "mappedBy": "owner"
+      "inversedBy": "owner"
     },
     "experts": {
       "type": "relation",
