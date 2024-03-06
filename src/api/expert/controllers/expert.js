@@ -17,13 +17,11 @@ module.exports = createCoreController('api::expert.expert', {
         console.log("Autheniticated Access")
         console.log(user)
 
-        const updated = await strapi.entityService.update("api::expert.expert", task.data.id, {
+        return await strapi.entityService.update("api::expert.expert", task.data.id, {
           data: {
             owner: user.id
           }
         });
-
-        return result;
       }
     } else{
       console.log("admin Access")
