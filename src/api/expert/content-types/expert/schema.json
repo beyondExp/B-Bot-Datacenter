@@ -80,9 +80,8 @@
     },
     "models": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::model.model",
-      "inversedBy": "experts"
+      "relation": "oneToMany",
+      "target": "api::model.model"
     },
     "templates": {
       "type": "relation",
