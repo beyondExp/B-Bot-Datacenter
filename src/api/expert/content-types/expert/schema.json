@@ -78,11 +78,6 @@
       },
       "type": "text"
     },
-    "models": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::model.model"
-    },
     "templates": {
       "type": "relation",
       "relation": "manyToMany",
@@ -164,6 +159,12 @@
         "Quality Assurance Manager"
       ],
       "required": true
+    },
+    "models": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::model.model",
+      "inversedBy": "experts"
     }
   }
 }

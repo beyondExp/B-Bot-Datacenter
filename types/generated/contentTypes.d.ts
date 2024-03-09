@@ -1126,11 +1126,6 @@ export interface ApiExpertExpert extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    models: Attribute.Relation<
-      'api::expert.expert',
-      'oneToMany',
-      'api::model.model'
-    >;
     templates: Attribute.Relation<
       'api::expert.expert',
       'manyToMany',
@@ -1208,6 +1203,11 @@ export interface ApiExpertExpert extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    models: Attribute.Relation<
+      'api::expert.expert',
+      'manyToMany',
+      'api::model.model'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1285,6 +1285,11 @@ export interface ApiModelModel extends Schema.CollectionType {
       'api::model.model',
       'manyToOne',
       'plugin::users-permissions.user'
+    >;
+    experts: Attribute.Relation<
+      'api::model.model',
+      'manyToMany',
+      'api::expert.expert'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
