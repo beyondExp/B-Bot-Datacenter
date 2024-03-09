@@ -45,12 +45,6 @@
       "type": "boolean",
       "required": true
     },
-    "model_qas": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::qa.qa",
-      "inversedBy": "models"
-    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",

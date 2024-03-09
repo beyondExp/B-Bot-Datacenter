@@ -1276,11 +1276,6 @@ export interface ApiModelModel extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    model_qas: Attribute.Relation<
-      'api::model.model',
-      'manyToMany',
-      'api::qa.qa'
-    >;
     owner: Attribute.Relation<
       'api::model.model',
       'manyToOne',
@@ -1338,7 +1333,6 @@ export interface ApiQaQa extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    models: Attribute.Relation<'api::qa.qa', 'manyToMany', 'api::model.model'>;
     owner: Attribute.Relation<
       'api::qa.qa',
       'manyToOne',

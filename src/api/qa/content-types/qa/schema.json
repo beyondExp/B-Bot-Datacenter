@@ -24,12 +24,6 @@
       },
       "type": "json"
     },
-    "models": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::model.model",
-      "mappedBy": "model_qas"
-    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",
