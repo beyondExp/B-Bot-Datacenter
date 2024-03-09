@@ -89,12 +89,6 @@
       "target": "api::expert.expert",
       "mappedBy": "owner"
     },
-    "models": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::model.model",
-      "mappedBy": "owner"
-    },
     "qas": {
       "type": "relation",
       "relation": "oneToMany",

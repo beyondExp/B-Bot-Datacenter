@@ -785,11 +785,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::expert.expert'
     >;
-    models: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::model.model'
-    >;
     qas: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -1203,10 +1198,10 @@ export interface ApiExpertExpert extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    models: Attribute.Relation<
+    llm_models: Attribute.Relation<
       'api::expert.expert',
       'manyToMany',
-      'api::model.model'
+      'api::llm-model.llm-model'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1232,13 +1227,12 @@ export interface ApiExpertExpert extends Schema.CollectionType {
   };
 }
 
-export interface ApiModelModel extends Schema.CollectionType {
-  collectionName: 'models';
+export interface ApiLlmModelLlmModel extends Schema.CollectionType {
+  collectionName: 'llm_models';
   info: {
-    singularName: 'model';
-    pluralName: 'models';
-    displayName: 'Model';
-    description: '';
+    singularName: 'llm-model';
+    pluralName: 'llm-models';
+    displayName: 'LLM Model';
   };
   options: {
     draftAndPublish: true;
@@ -1249,62 +1243,42 @@ export interface ApiModelModel extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
-    llm_name_string: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.SetMinMaxLength<{
-        maxLength: 50;
-      }>;
-    publicly_trainable: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    owner: Attribute.Relation<
-      'api::model.model',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
     experts: Attribute.Relation<
-      'api::model.model',
+      'api::llm-model.llm-model',
       'manyToMany',
       'api::expert.expert'
     >;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    identifier: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::model.model',
+      'api::llm-model.llm-model',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::model.model',
+      'api::llm-model.llm-model',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     localizations: Attribute.Relation<
-      'api::model.model',
+      'api::llm-model.llm-model',
       'oneToMany',
-      'api::model.model'
+      'api::llm-model.llm-model'
     >;
     locale: Attribute.String;
   };
@@ -1446,7 +1420,7 @@ declare module '@strapi/types' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::expert.expert': ApiExpertExpert;
-      'api::model.model': ApiModelModel;
+      'api::llm-model.llm-model': ApiLlmModelLlmModel;
       'api::qa.qa': ApiQaQa;
       'api::template.template': ApiTemplateTemplate;
     }
