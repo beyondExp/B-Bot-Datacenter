@@ -1198,7 +1198,7 @@ export interface ApiExpertExpert extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    llm_models: Attribute.Relation<
+    expert_llm_models: Attribute.Relation<
       'api::expert.expert',
       'manyToMany',
       'api::llm-model.llm-model'
@@ -1243,11 +1243,6 @@ export interface ApiLlmModelLlmModel extends Schema.CollectionType {
     };
   };
   attributes: {
-    experts: Attribute.Relation<
-      'api::llm-model.llm-model',
-      'manyToMany',
-      'api::expert.expert'
-    >;
     name: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1260,6 +1255,11 @@ export interface ApiLlmModelLlmModel extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    models_experts: Attribute.Relation<
+      'api::llm-model.llm-model',
+      'manyToMany',
+      'api::expert.expert'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

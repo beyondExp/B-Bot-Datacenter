@@ -15,12 +15,6 @@
     }
   },
   "attributes": {
-    "experts": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::expert.expert",
-      "inversedBy": "llm_models"
-    },
     "name": {
       "pluginOptions": {
         "i18n": {
@@ -36,6 +30,12 @@
         }
       },
       "type": "string"
+    },
+    "models_experts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::expert.expert",
+      "mappedBy": "expert_llm_models"
     }
   }
 }

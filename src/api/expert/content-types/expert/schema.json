@@ -160,11 +160,11 @@
       ],
       "required": true
     },
-    "llm_models": {
+    "expert_llm_models": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::llm-model.llm-model",
-      "mappedBy": "experts"
+      "inversedBy": "models_experts"
     }
   }
 }
