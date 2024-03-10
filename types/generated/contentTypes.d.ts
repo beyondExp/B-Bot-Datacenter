@@ -795,6 +795,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::template.template'
     >;
+    conversations: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::conversation.conversation'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1067,6 +1072,16 @@ export interface ApiConversationConversation extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     messages: Attribute.JSON & Attribute.Required;
+    expert: Attribute.Relation<
+      'api::conversation.conversation',
+      'manyToOne',
+      'api::expert.expert'
+    >;
+    owner: Attribute.Relation<
+      'api::conversation.conversation',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1234,6 +1249,11 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       'api::expert.expert',
       'manyToMany',
       'api::llm-model.llm-model'
+    >;
+    conversations: Attribute.Relation<
+      'api::expert.expert',
+      'oneToMany',
+      'api::conversation.conversation'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

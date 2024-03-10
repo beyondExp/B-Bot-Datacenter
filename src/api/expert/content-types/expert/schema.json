@@ -165,6 +165,12 @@
       "relation": "manyToMany",
       "target": "api::llm-model.llm-model",
       "inversedBy": "models_experts"
+    },
+    "conversations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::conversation.conversation",
+      "mappedBy": "expert"
     }
   }
 }
