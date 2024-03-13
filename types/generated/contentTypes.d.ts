@@ -1124,6 +1124,7 @@ export interface ApiExpertExpert extends Schema.CollectionType {
         };
       }>;
     name: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1142,7 +1143,6 @@ export interface ApiExpertExpert extends Schema.CollectionType {
         maxLength: 500;
       }>;
     function_name: Attribute.String &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
