@@ -1150,7 +1150,7 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       }> &
       Attribute.SetMinMaxLength<{
         minLength: 10;
-        maxLength: 50;
+        maxLength: 100;
       }>;
     function_description: Attribute.Text &
       Attribute.SetPluginOptions<{

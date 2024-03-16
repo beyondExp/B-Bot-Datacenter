@@ -58,7 +58,7 @@
       },
       "type": "string",
       "required": false,
-      "maxLength": 50,
+      "maxLength": 100,
       "minLength": 10
     },
     "function_description": {
