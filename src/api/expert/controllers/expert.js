@@ -16,20 +16,21 @@ module.exports = createCoreController('api::expert.expert', {
         const task = await super.create(ctx);
         console.log("Autheniticated Access")
         console.log(user)
-        const modelData = {
-          name: "Base Model",
-          identifier: "gpt-3.5-turbo-0125",
-          expert: task.data.id,
-        };
 
-        // Create the standard model object by invoking Strapi's entity service
-        await strapi.entityService.create('api::llm_model.llm_model', { data: modelData });
-
-        return await strapi.entityService.update("api::expert.expert", task.data.id, {
+        const returnData =  await strapi.entityService.update("api::expert.expert", task.data.id, {
           data: {
             owner: user.id
           }
         });
+        const modelData = {
+          name: "Base Model",
+          identifier: "gpt-3.5-turbo-0125",
+          models_experts: task.data.id,
+        };
+
+        // Create the standard model object by invoking Strapi's entity service
+        await strapi.entityService.create('api::llm_model.llm_model', { data: modelData });
+        return returnData
       }
     } else{
       console.log("admin Access")
