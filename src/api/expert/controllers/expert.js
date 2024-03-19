@@ -22,7 +22,7 @@ module.exports = createCoreController('api::expert.expert', {
         };
 
         // Create the standard model object by invoking Strapi's entity service
-        const model = await strapi.entityService.create('api::llm_model.llm_model', { data: modelData });
+        const model = await strapi.entityService.create('api::llm-model.llm-model', { data: modelData });
         console.log("Model: ",model)
         const returnData =  await strapi.entityService.update("api::expert.expert", task.data.id, {
           data: {
