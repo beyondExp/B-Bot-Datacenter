@@ -1004,6 +1004,8 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    profile_information: Attribute.Text;
+    phone_number: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -45,6 +45,12 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "author"
+    },
+    "profile_information": {
+      "type": "text"
+    },
+    "phone_number": {
+      "type": "string"
     }
   }
 }
