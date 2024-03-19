@@ -19,7 +19,6 @@ module.exports = createCoreController('api::expert.expert', {
         const modelData = {
           name: "Base Model",
           identifier: "gpt-3.5-turbo-0125",
-          models_experts: [task.data.id]
         };
 
         // Create the standard model object by invoking Strapi's entity service
