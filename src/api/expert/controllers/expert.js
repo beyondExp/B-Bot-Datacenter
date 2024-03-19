@@ -27,6 +27,7 @@ module.exports = createCoreController('api::expert.expert', {
         const returnData =  await strapi.entityService.update("api::expert.expert", task.data.id, {
           data: {
             owner: user.id,
+            expert_llm_models: [model.id]
           }
         });
 
