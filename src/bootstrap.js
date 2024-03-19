@@ -260,3 +260,27 @@ module.exports = async () => {
     }
   }
 };
+
+module.exports = async ({ strapi }) => {
+  strapi.db.lifecycles.subscribe({
+    models: ["plugin::users-permissions.user"],
+
+    async afterCreate(event) {
+      const { result } = event;
+      console.log(result);
+      // Replace 'api::author.author' with your Author model's UID
+      // Ensure to adjust the field names according to your Author content type's schema
+      await strapi.entityService.create("api::author.author", {
+        data: {
+          // Assuming 'user' is the relation field in Author content type linking to the User
+          // And 'name' or other fields as per your Author model's definition
+          owner: result.id,
+          name: result.username || result.email, // Example field
+          email: result.email, // Example field
+        },
+      });
+
+      console.log(`Author created for new user: ${result.id}`);
+    },
+  });
+};
