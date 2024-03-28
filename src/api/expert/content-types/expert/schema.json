@@ -172,6 +172,12 @@
       "relation": "oneToMany",
       "target": "api::conversation.conversation",
       "mappedBy": "expert"
+    },
+    "training_sessions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::training-session.training-session",
+      "mappedBy": "experts"
     }
   }
 }

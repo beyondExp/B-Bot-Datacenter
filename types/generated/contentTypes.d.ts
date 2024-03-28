@@ -1257,6 +1257,11 @@ export interface ApiExpertExpert extends Schema.CollectionType {
       'oneToMany',
       'api::conversation.conversation'
     >;
+    training_sessions: Attribute.Relation<
+      'api::expert.expert',
+      'manyToMany',
+      'api::training-session.training-session'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1313,6 +1318,11 @@ export interface ApiLlmModelLlmModel extends Schema.CollectionType {
       'api::llm-model.llm-model',
       'manyToMany',
       'api::expert.expert'
+    >;
+    training_sessions: Attribute.Relation<
+      'api::llm-model.llm-model',
+      'manyToMany',
+      'api::training-session.training-session'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1450,6 +1460,69 @@ export interface ApiTemplateTemplate extends Schema.CollectionType {
   };
 }
 
+export interface ApiTrainingSessionTrainingSession
+  extends Schema.CollectionType {
+  collectionName: 'training_sessions';
+  info: {
+    singularName: 'training-session';
+    pluralName: 'training-sessions';
+    displayName: 'Training Session';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    training_data: Attribute.JSON &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    experts: Attribute.Relation<
+      'api::training-session.training-session',
+      'manyToMany',
+      'api::expert.expert'
+    >;
+    llm_models: Attribute.Relation<
+      'api::training-session.training-session',
+      'manyToMany',
+      'api::llm-model.llm-model'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::training-session.training-session',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::training-session.training-session',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::training-session.training-session',
+      'oneToMany',
+      'api::training-session.training-session'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1478,6 +1551,7 @@ declare module '@strapi/types' {
       'api::llm-model.llm-model': ApiLlmModelLlmModel;
       'api::qa.qa': ApiQaQa;
       'api::template.template': ApiTemplateTemplate;
+      'api::training-session.training-session': ApiTrainingSessionTrainingSession;
     }
   }
 }
